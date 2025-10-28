@@ -1,6 +1,6 @@
-# ExpenseWise Frontend
+# SpendWise Frontend
 
-Nuxt.js 3 frontend application for ExpenseWise expense management system.
+Nuxt.js 3 frontend application for SpendWise expense management system.
 
 ## Setup
 

@@ -42,4 +42,3 @@ export { useThemeStore } from '../stores/theme';
 export { useTransactionsStore } from '../stores/transactions';
 export { useWalletsStore } from '../stores/wallets';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
-export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
