@@ -19,6 +19,7 @@
           :key="alert.category_id"
           :class="[
             'p-4 rounded-lg border-l-4',
+            alert.severity === 'completed' ? 'bg-green-50 dark:bg-green-900 border-green-500' :
             alert.severity === 'danger' ? 'bg-red-50 dark:bg-red-900 border-red-500' :
             alert.severity === 'critical' ? 'bg-orange-50 dark:bg-orange-900 border-orange-500' :
             'bg-yellow-50 dark:bg-yellow-900 border-yellow-500'
@@ -28,6 +29,7 @@
             <div>
               <p :class="[
                 'font-semibold',
+                alert.severity === 'completed' ? 'text-green-800 dark:text-green-200' :
                 alert.severity === 'danger' ? 'text-red-800 dark:text-red-200' :
                 alert.severity === 'critical' ? 'text-orange-800 dark:text-orange-200' :
                 'text-yellow-800 dark:text-yellow-200'
@@ -40,6 +42,7 @@
             </div>
             <div :class="[
               'text-2xl font-bold',
+              alert.severity === 'completed' ? 'text-green-600 dark:text-green-400' :
               alert.severity === 'danger' ? 'text-red-600 dark:text-red-400' :
               alert.severity === 'critical' ? 'text-orange-600 dark:text-orange-400' :
               'text-yellow-600 dark:text-yellow-400'
@@ -73,6 +76,7 @@
           <span :class="[
             'px-3 py-1 rounded-full text-xs font-semibold',
             budget.alert_level === 'safe' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' :
+            budget.alert_level === 'completed' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' :
             budget.alert_level === 'warning' ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200' :
             budget.alert_level === 'critical' ? 'bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200' :
             'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
@@ -91,9 +95,10 @@
             <div
               :class="[
                 'h-full transition-all duration-300',
-                budget.percentage >= 100 ? 'bg-red-500' :
-                budget.percentage >= 90 ? 'bg-orange-500' :
-                budget.percentage >= 80 ? 'bg-yellow-500' :
+                budget.alert_level === 'completed' ? 'bg-green-500' :
+                budget.alert_level === 'danger' ? 'bg-red-500' :
+                budget.alert_level === 'critical' ? 'bg-orange-500' :
+                budget.alert_level === 'warning' ? 'bg-yellow-500' :
                 'bg-green-500'
               ]"
               :style="{ width: Math.min(budget.percentage, 100) + '%' }"

@@ -104,64 +104,97 @@
           :key="receipt.id"
           class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
         >
-          <!-- Preview Thumbnail -->
-          <div class="bg-gray-100 dark:bg-gray-700 h-48 flex items-center justify-center">
-            <svg v-if="receipt.file_type.startsWith('image/')" class="w-20 h-20 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-            <svg v-else class="w-20 h-20 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-            </svg>
-          </div>
-
           <!-- Receipt Info -->
           <div class="p-4">
-            <h3 class="font-semibold text-gray-900 dark:text-white truncate mb-2" :title="receipt.original_filename">
-              {{ receipt.original_filename }}
-            </h3>
-            
-            <div class="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-4">
-              <p class="flex items-center gap-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            <!-- File Icon Header -->
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex-shrink-0">
+                <svg v-if="receipt.file_type && receipt.file_type.startsWith('image/')" class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
-                {{ formatDate(receipt.uploaded_at) }}
-              </p>
-              <p class="flex items-center gap-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                <svg v-else class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
-                {{ formatFileSize(receipt.file_size) }}
-              </p>
-              <p class="flex items-center gap-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                </svg>
-                {{ receipt.file_type.split('/')[1].toUpperCase() }}
-              </p>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-gray-900 dark:text-white truncate" :title="receipt.original_filename">
+                  {{ receipt.original_filename }}
+                </h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mt-1">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                  Uploaded: {{ formatDate(receipt.uploaded_at) }}
+                </p>
+              </div>
             </div>
 
-            <!-- Actions -->
-            <div class="flex gap-2">
-              <button
-                @click="viewReceipt(receipt)"
-                class="flex-1 px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm flex items-center justify-center gap-1"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                </svg>
-                View
-              </button>
-              <button
-                @click="downloadReceipt(receipt)"
-                class="flex-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600 text-sm flex items-center justify-center gap-1"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                </svg>
-                Download
-              </button>
+            <!-- Transaction Details -->
+            <div v-if="receipt.transaction" class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+              <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide">Related Transaction</p>
+              
+              <div class="space-y-2 text-sm">
+                <!-- Description -->
+                <div v-if="receipt.transaction.description">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Description</p>
+                  <p class="font-medium text-gray-900 dark:text-white">{{ receipt.transaction.description }}</p>
+                </div>
+                
+                <!-- Amount and Type -->
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Amount</p>
+                    <p :class="[
+                      'font-semibold',
+                      receipt.transaction.transaction_type === 'income' ? 'text-green-600 dark:text-green-400' : 
+                      receipt.transaction.transaction_type === 'expense' ? 'text-red-600 dark:text-red-400' :
+                      'text-blue-600 dark:text-blue-400'
+                    ]">
+                      {{ formatTransactionAmount(receipt.transaction.amount, receipt.transaction.wallet?.currency) }}
+                    </p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Type</p>
+                    <span :class="[
+                      'px-2 py-1 rounded text-xs font-medium capitalize',
+                      receipt.transaction.transaction_type === 'income' ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300' : 
+                      receipt.transaction.transaction_type === 'expense' ? 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300' :
+                      'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
+                    ]">
+                      {{ receipt.transaction.transaction_type }}
+                    </span>
+                  </div>
+                </div>
+                
+                <!-- Category -->
+                <div v-if="receipt.transaction.category">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Category</p>
+                  <p class="text-gray-900 dark:text-white">{{ receipt.transaction.category.name }}</p>
+                </div>
+                
+                <!-- Wallet -->
+                <div v-if="receipt.transaction.wallet">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Wallet</p>
+                  <p class="text-gray-900 dark:text-white">{{ receipt.transaction.wallet.name }} ({{ receipt.transaction.wallet.currency }})</p>
+                </div>
+                
+                <!-- Transaction Date -->
+                <div v-if="receipt.transaction.transaction_date">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Transaction Date</p>
+                  <p class="text-gray-900 dark:text-white">{{ formatDate(receipt.transaction.transaction_date) }}</p>
+                </div>
+                
+                <!-- Notes -->
+                <div v-if="receipt.transaction.notes">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Notes</p>
+                  <p class="text-gray-700 dark:text-gray-300">{{ receipt.transaction.notes }}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- No Transaction Linked -->
+            <div v-else class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+              <p class="text-xs text-gray-400 dark:text-gray-500 italic">Not linked to any transaction</p>
             </div>
           </div>
         </div>
@@ -187,48 +220,7 @@
           Next →
         </button>
       </div>
-    </div>
-
-    <!-- Preview Modal -->
-    <div v-if="previewReceipt" class="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 flex items-center justify-center z-50 p-4" @click.self="closePreview">
-      <div class="bg-white dark:bg-gray-800 rounded-lg max-w-4xl max-h-[90vh] overflow-auto">
-        <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between sticky top-0 bg-white dark:bg-gray-800">
-          <h3 class="font-semibold text-gray-900 dark:text-white">{{ previewReceipt.original_filename }}</h3>
-          <button @click="closePreview" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-        </div>
-        <div class="p-4 bg-white dark:bg-gray-900">
-          <div v-if="!previewReceipt.blobUrl" class="text-center py-8">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 dark:border-blue-400 mx-auto"></div>
-            <p class="text-gray-600 dark:text-gray-400 mt-4">Loading...</p>
-          </div>
-          <img 
-            v-else-if="previewReceipt.file_type.startsWith('image/')"
-            :src="previewReceipt.blobUrl"
-            :alt="previewReceipt.original_filename"
-            class="max-w-full h-auto rounded"
-          />
-          <div v-else class="text-center py-8">
-            <div class="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400 mb-4">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-              <p>PDF Document</p>
-            </div>
-            <a
-              :href="previewReceipt.blobUrl"
-              target="_blank"
-              class="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded hover:bg-blue-600 dark:hover:bg-blue-700 inline-block"
-            >
-              Open PDF in new tab
-            </a>
-          </div>
-        </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -241,6 +233,7 @@ definePageMeta({
 })
 
 const config = useRuntimeConfig()
+const { formatTransactionAmount } = useCurrency()
 
 const filters = ref({
   query: '',
@@ -259,7 +252,6 @@ const results = ref({
 const loading = ref(false)
 const error = ref('')
 const currentPage = ref(1)
-const previewReceipt = ref<any>(null)
 
 const totalPages = computed(() => {
   return Math.ceil(results.value.total / results.value.limit)
@@ -335,59 +327,7 @@ const previousPage = () => {
   }
 }
 
-const viewReceipt = async (receipt: any) => {
-  previewReceipt.value = {...receipt, blobUrl: null}
-  
-  try {
-    const token = localStorage.getItem('access_token')
-    const response = await fetch(`${config.public.apiBase}/receipts/${receipt.id}/download`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    
-    if (!response.ok) throw new Error('Failed to load receipt')
-    
-    const blob = await response.blob()
-    const blobUrl = window.URL.createObjectURL(blob)
-    previewReceipt.value.blobUrl = blobUrl
-  } catch (err: any) {
-    error.value = 'Failed to load receipt'
-    console.error(err)
-  }
-}
-
-const downloadReceipt = async (receipt: any) => {
-  try {
-    const token = localStorage.getItem('access_token')
-    const response = await fetch(`${config.public.apiBase}/receipts/${receipt.id}/download`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    
-    if (!response.ok) throw new Error('Download failed')
-    
-    const blob = await response.blob()
-    const url = window.URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = receipt.original_filename
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    window.URL.revokeObjectURL(url)
-  } catch (err: any) {
-    error.value = 'Failed to download receipt'
-  }
-}
-
-const closePreview = () => {
-  if (previewReceipt.value?.blobUrl) {
-    window.URL.revokeObjectURL(previewReceipt.value.blobUrl)
-  }
-  previewReceipt.value = null
-}
+// Removed viewReceipt, downloadReceipt, and closePreview functions - no longer displaying text or allowing downloads
 
 const formatDate = (dateString: string): string => {
   return new Date(dateString).toLocaleDateString('en-US', {
@@ -397,11 +337,7 @@ const formatDate = (dateString: string): string => {
   })
 }
 
-const formatFileSize = (bytes: number): string => {
-  if (bytes < 1024) return bytes + ' B'
-  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
-  return (bytes / 1024 / 1024).toFixed(1) + ' MB'
-}
+// Removed formatFileSize - not displaying file size anymore
 
 onMounted(() => {
   fetchReceipts()

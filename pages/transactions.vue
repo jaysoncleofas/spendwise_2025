@@ -305,7 +305,7 @@
                 <span class="text-xs text-gray-500">JPG, PNG, or PDF</span>
               </div>
               <p class="text-xs text-gray-500 mt-1">
-                💡 Tip: Upload a receipt to auto-fill amount and description using OCR!
+                💡 Tip: Upload a receipt to auto-fill amount and description using OCR (notes will not be auto-filled)
               </p>
             </div>
             
@@ -588,15 +588,12 @@ const handleReceiptUpload = async (event: Event) => {
         transactionForm.value.description = parsed.description
       }
       
-      // Auto-fill notes with OCR text if not already filled
-      if (parsed.notes && !transactionForm.value.notes) {
-        transactionForm.value.notes = parsed.notes
-      }
+      // Notes are NOT auto-filled from OCR text - user can add notes manually if needed
     }
     
     // Show success message
     if (response.data.parsed_data && (response.data.parsed_data.amount || response.data.parsed_data.description)) {
-      alert('Receipt uploaded! Form has been auto-filled with detected data. Please review and adjust if needed.')
+      alert('Receipt uploaded! Amount and description have been auto-filled. Please review and adjust if needed.')
     }
     
     // Clear the file input
