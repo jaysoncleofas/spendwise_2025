@@ -52,7 +52,7 @@
       />
       
       <div v-if="!selectedFile" class="text-center">
-        <p class="text-sm text-gray-600 mb-2">📷 Upload Receipt</p>
+        <p class="text-sm text-gray-600 mb-2">Upload Receipt</p>
         <button
           @click="$refs.fileInput.click()"
           class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -129,7 +129,6 @@ const fetchReceipts = async () => {
     })
     receipts.value = response
   } catch (err: any) {
-    console.error('Failed to fetch receipts:', err)
   }
 }
 
@@ -199,7 +198,6 @@ const uploadFile = async () => {
     clearFile()
   } catch (err: any) {
     error.value = err.message || err.data?.detail || 'Failed to upload receipt'
-    console.error('Receipt upload error:', err)
   } finally {
     uploading.value = false
   }

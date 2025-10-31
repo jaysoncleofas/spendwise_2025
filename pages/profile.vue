@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 sm:px-0">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Profile Settings</h1>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Profile Settings</h1>
 
     <!-- Profile Overview Card -->
     <div class="card mb-6">

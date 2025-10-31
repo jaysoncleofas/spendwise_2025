@@ -1,9 +1,12 @@
 <template>
     <div class="px-4 sm:px-0">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Wallets</h1>
-        <button @click="showCreateModal = true" class="btn-primary">
-          + Add Wallet
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Wallets</h1>
+        <button @click="showCreateModal = true" class="flex items-center justify-center p-2 sm:px-4 sm:py-2 rounded-md btn-primary" title="Add Wallet">
+          <svg class="w-5 h-5 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          <span class="hidden sm:inline">+ Add Wallet</span>
         </button>
       </div>
 
@@ -119,7 +122,6 @@ const fetchCurrencies = async () => {
     const response = await $api.get('/currency/currencies')
     currencies.value = response.data
   } catch (error) {
-    console.error('Failed to fetch currencies:', error)
     // Fallback to default currencies if API fails
     currencies.value = [
       { code: 'USD', name: 'US Dollar', symbol: '$' },
@@ -169,7 +171,6 @@ const handleSaveWallet = async () => {
     }
     closeModal()
   } catch (error) {
-    console.error('Failed to save wallet:', error)
     alert('Failed to save wallet. Please try again.')
   }
 }
@@ -190,7 +191,6 @@ const handleAddMoney = async () => {
     addMoneyWallet.value = null
     addMoneyAmount.value = 0
   } catch (error) {
-    console.error('Failed to add money:', error)
     alert('Failed to add money. Please try again.')
   }
 }
@@ -200,7 +200,6 @@ const deleteWalletConfirm = async (id: number) => {
     try {
       await walletsStore.deleteWallet(id)
     } catch (error) {
-      console.error('Failed to delete wallet:', error)
       alert('Failed to delete wallet. Please try again.')
     }
   }

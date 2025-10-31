@@ -1,13 +1,19 @@
 <template>
     <div class="px-4 sm:px-0">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Transactions</h1>
-        <div class="flex gap-3">
-          <button @click="exportTransactions" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
-            📥 Export CSV
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Transactions</h1>
+        <div class="flex gap-2 sm:gap-3">
+          <button @click="exportTransactions" class="flex items-center justify-center p-2 sm:px-4 sm:py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition" title="Export CSV">
+            <svg class="w-5 h-5 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+            <span class="hidden sm:inline">Export CSV</span>
           </button>
-          <button @click="showCreateModal = true" class="btn-primary">
-            + Add Transaction
+          <button @click="showCreateModal = true" class="flex items-center justify-center p-2 sm:px-4 sm:py-2 rounded-md btn-primary" title="Add Transaction">
+            <svg class="w-5 h-5 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            <span class="hidden sm:inline">+ Add Transaction</span>
           </button>
         </div>
       </div>
@@ -300,12 +306,12 @@
                   :disabled="uploadingReceipt"
                   class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
                 >
-                  {{ uploadingReceipt ? '⏳ Uploading...' : '📷 Choose File' }}
+                  {{ uploadingReceipt ? 'Uploading...' : 'Choose File' }}
                 </button>
                 <span class="text-xs text-gray-500">JPG, PNG, or PDF</span>
               </div>
               <p class="text-xs text-gray-500 mt-1">
-                💡 Tip: Upload a receipt to auto-fill amount and description using OCR (notes will not be auto-filled)
+                Tip: Upload a receipt to auto-fill amount and description using OCR (notes will not be auto-filled)
               </p>
             </div>
             
@@ -465,7 +471,6 @@ const handleSaveTransaction = async () => {
           params: { transaction_id: transactionId }
         })
       } catch (error) {
-        console.error('Failed to link receipt to transaction:', error)
         // Continue anyway, receipt was uploaded but not linked
       }
     }
@@ -481,7 +486,6 @@ const handleSaveTransaction = async () => {
     await walletsStore.fetchWallets() // Refresh wallet balances
     await transactionsStore.fetchTransactions() // Refresh transactions
   } catch (error) {
-    console.error('Failed to save transaction:', error)
     alert('Failed to save transaction. Please try again.')
   }
 }
@@ -492,7 +496,6 @@ const deleteTransactionConfirm = async (id: number) => {
       await transactionsStore.deleteTransaction(id)
       await walletsStore.fetchWallets() // Refresh wallet balances
     } catch (error) {
-      console.error('Failed to delete transaction:', error)
       alert('Failed to delete transaction. Please try again.')
     }
   }
@@ -531,11 +534,9 @@ const closeReceiptsModal = () => {
 }
 
 const onReceiptUploaded = (receipt: any) => {
-  console.log('Receipt uploaded:', receipt)
 }
 
 const onReceiptDeleted = (receiptId: number) => {
-  console.log('Receipt deleted:', receiptId)
 }
 
 const handleReceiptUpload = async (event: Event) => {
@@ -601,7 +602,6 @@ const handleReceiptUpload = async (event: Event) => {
       receiptFileInput.value.value = ''
     }
   } catch (error: any) {
-    console.error('Failed to upload receipt:', error)
     alert(error.response?.data?.detail || 'Failed to upload receipt. Please try again.')
     attachedReceipt.value = null
   } finally {
@@ -618,7 +618,6 @@ const removeAttachedReceipt = async () => {
       await $api.delete(`/receipts/${attachedReceipt.value.id}`)
       attachedReceipt.value = null
     } catch (error) {
-      console.error('Failed to delete receipt:', error)
       alert('Failed to delete receipt. Please try again.')
     }
   }
@@ -654,7 +653,6 @@ const exportTransactions = () => {
       document.body.removeChild(a)
     })
     .catch(error => {
-      console.error('Failed to export transactions:', error)
       alert('Failed to export transactions. Please try again.')
     })
 }

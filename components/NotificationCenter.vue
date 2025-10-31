@@ -112,7 +112,6 @@ const fetchNotifications = async () => {
     const response = await $api.get('/notifications')
     notifications.value = response.data
   } catch (error) {
-    console.error('Failed to fetch notifications:', error)
   }
 }
 
@@ -122,7 +121,6 @@ const fetchUnreadCount = async () => {
     const response = await $api.get('/notifications/unread-count')
     unreadCount.value = response.data.count
   } catch (error) {
-    console.error('Failed to fetch unread count:', error)
   }
 }
 
@@ -137,7 +135,6 @@ const markAsRead = async (id: number) => {
       unreadCount.value = Math.max(0, unreadCount.value - 1)
     }
   } catch (error) {
-    console.error('Failed to mark notification as read:', error)
   }
 }
 
@@ -149,7 +146,6 @@ const markAllAsRead = async () => {
     notifications.value.forEach(n => n.is_read = 1)
     unreadCount.value = 0
   } catch (error) {
-    console.error('Failed to mark all as read:', error)
   }
 }
 
@@ -166,7 +162,6 @@ const deleteNotification = async (id: number) => {
       notifications.value.splice(index, 1)
     }
   } catch (error) {
-    console.error('Failed to delete notification:', error)
   }
 }
 
@@ -179,7 +174,6 @@ const checkForAlerts = async () => {
     await fetchNotifications()
     await fetchUnreadCount()
   } catch (error) {
-    console.error('Failed to check for alerts:', error)
   }
 }
 

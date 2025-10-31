@@ -17,7 +17,6 @@ export const useTagsStore = defineStore('tags', {
         this.tags = response.data
       } catch (error: any) {
         this.error = error.response?.data?.detail || 'Failed to fetch tags'
-        console.error('Failed to fetch tags:', error)
       } finally {
         this.loading = false
       }
@@ -74,7 +73,6 @@ export const useTagsStore = defineStore('tags', {
         const response = await $api.get(`/tags/transaction/${transactionId}/tags`)
         return response.data
       } catch (error: any) {
-        console.error('Failed to get transaction tags:', error)
         return []
       }
     },
@@ -87,7 +85,6 @@ export const useTagsStore = defineStore('tags', {
         })
         return response.data
       } catch (error: any) {
-        console.error('Failed to get tag suggestions:', error)
         return []
       }
     }

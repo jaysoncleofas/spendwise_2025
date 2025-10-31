@@ -1,19 +1,27 @@
 <template>
     <div class="px-4 sm:px-0">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Recurring Transactions</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Recurring Transactions</h1>
       <div class="flex gap-3">
         <button
           @click="processRecurring"
-          class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+          class="flex items-center justify-center p-2 sm:px-4 sm:py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+          title="Process Due"
         >
-          Process Due
+          <svg class="w-5 h-5 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          <span class="hidden sm:inline">Process Due</span>
         </button>
         <button
           @click="showCreateModal = true"
-          class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700"
+          class="flex items-center justify-center p-2 sm:px-4 sm:py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition"
+          title="Add Recurring"
         >
-          + Add Recurring
+          <svg class="w-5 h-5 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          <span class="hidden sm:inline">+ Add Recurring</span>
         </button>
       </div>
     </div>
@@ -262,7 +270,6 @@ const createRecurring = async () => {
   } catch (error: any) {
     const errorMsg = error.response?.data?.detail || 'Failed to create recurring transaction'
     alert(errorMsg)
-    console.error('Error details:', error.response?.data)
   }
 }
 

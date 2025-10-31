@@ -1,9 +1,12 @@
 <template>
     <div class="px-4 sm:px-0">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Categories</h1>
-        <button @click="showCreateModal = true" class="btn-primary">
-          + Add Category
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Categories</h1>
+        <button @click="showCreateModal = true" class="flex items-center justify-center p-2 sm:px-4 sm:py-2 rounded-md btn-primary" title="Add Category">
+          <svg class="w-5 h-5 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          <span class="hidden sm:inline">+ Add Category</span>
         </button>
       </div>
 
@@ -307,7 +310,6 @@ const handleSaveCategory = async () => {
     }
     closeModal()
   } catch (error) {
-    console.error('Failed to save category:', error)
     alert('Failed to save category. Please try again.')
   }
 }
@@ -317,7 +319,6 @@ const deleteCategoryConfirm = async (id: number) => {
     try {
       await categoriesStore.deleteCategory(id)
     } catch (error) {
-      console.error('Failed to delete category:', error)
       alert('Failed to delete category. Please try again.')
     }
   }

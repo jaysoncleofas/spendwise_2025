@@ -1,6 +1,6 @@
 <template>
     <div class="px-4 sm:px-0">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Analytics</h1>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Analytics</h1>
 
       <!-- Period Selector -->
       <div class="card mb-6">
@@ -445,11 +445,9 @@ onMounted(async () => {
     try {
       await analyticsStore.fetchSpendingHeatmap(30)
     } catch (error: any) {
-      console.error('Heatmap error:', error)
       heatmapError.value = error.response?.data?.detail || 'Failed to load spending patterns. You may need more transaction data.'
     }
   } catch (error) {
-    console.error('Error loading analytics:', error)
   }
 })
 </script>

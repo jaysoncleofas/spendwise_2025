@@ -1,10 +1,7 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <div class="px-4 sm:px-0">
     <div class="mb-6">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
-        </svg>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
         Receipt Search
       </h1>
       <p class="text-gray-600 dark:text-gray-400">Search and filter all your receipts</p>
@@ -295,7 +292,6 @@ const fetchReceipts = async () => {
     results.value = response
   } catch (err: any) {
     error.value = err.data?.detail || 'Failed to search receipts'
-    console.error('Receipt search error:', err)
   } finally {
     loading.value = false
   }

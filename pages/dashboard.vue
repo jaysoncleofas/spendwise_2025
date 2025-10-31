@@ -1,6 +1,6 @@
 <template>
     <div class="px-4 sm:px-0">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Dashboard</h1>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Dashboard</h1>
 
       <!-- Multi-Currency Summary (if wallets have different currencies) -->
       <div v-if="currencySummary && hasMultipleCurrencies" class="card mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900">
@@ -232,7 +232,6 @@ const fetchCurrencySummary = async () => {
     const response = await $api.get('/currency/summary')
     currencySummary.value = response.data
   } catch (error) {
-    console.error('Failed to fetch currency summary:', error)
   }
 }
 

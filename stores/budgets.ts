@@ -15,7 +15,6 @@ export const useBudgetsStore = defineStore('budgets', {
         const response = await $api.get('/budgets/status')
         this.budgetStatuses = response.data
       } catch (error) {
-        console.error('Failed to fetch budget status:', error)
         throw error
       } finally {
         this.loading = false
@@ -28,7 +27,6 @@ export const useBudgetsStore = defineStore('budgets', {
         const response = await $api.get('/budgets/alerts')
         this.budgetAlerts = response.data
       } catch (error) {
-        console.error('Failed to fetch budget alerts:', error)
         throw error
       }
     },
@@ -39,7 +37,6 @@ export const useBudgetsStore = defineStore('budgets', {
         const response = await $api.get(`/budgets/history/${categoryId}?months=${months}`)
         return response.data
       } catch (error) {
-        console.error('Failed to fetch budget history:', error)
         throw error
       }
     },

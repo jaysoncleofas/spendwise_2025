@@ -14,7 +14,6 @@ export const useRecurringStore = defineStore('recurring', {
         const response = await $api.get(`/recurring?include_inactive=${includeInactive}`)
         this.recurringTransactions = response.data
       } catch (error) {
-        console.error('Failed to fetch recurring transactions:', error)
         throw error
       } finally {
         this.loading = false
@@ -28,7 +27,6 @@ export const useRecurringStore = defineStore('recurring', {
         await this.fetchRecurringTransactions()
         return response.data
       } catch (error) {
-        console.error('Failed to create recurring transaction:', error)
         throw error
       }
     },
@@ -40,7 +38,6 @@ export const useRecurringStore = defineStore('recurring', {
         await this.fetchRecurringTransactions()
         return response.data
       } catch (error) {
-        console.error('Failed to update recurring transaction:', error)
         throw error
       }
     },
@@ -51,7 +48,6 @@ export const useRecurringStore = defineStore('recurring', {
         await $api.post(`/recurring/${id}/pause`)
         await this.fetchRecurringTransactions()
       } catch (error) {
-        console.error('Failed to pause recurring transaction:', error)
         throw error
       }
     },
@@ -62,7 +58,6 @@ export const useRecurringStore = defineStore('recurring', {
         await $api.post(`/recurring/${id}/resume`)
         await this.fetchRecurringTransactions()
       } catch (error) {
-        console.error('Failed to resume recurring transaction:', error)
         throw error
       }
     },
@@ -73,7 +68,6 @@ export const useRecurringStore = defineStore('recurring', {
         await $api.delete(`/recurring/${id}`)
         await this.fetchRecurringTransactions()
       } catch (error) {
-        console.error('Failed to delete recurring transaction:', error)
         throw error
       }
     },
@@ -84,7 +78,6 @@ export const useRecurringStore = defineStore('recurring', {
         const response = await $api.post('/recurring/process')
         return response.data
       } catch (error) {
-        console.error('Failed to process recurring transactions:', error)
         throw error
       }
     },

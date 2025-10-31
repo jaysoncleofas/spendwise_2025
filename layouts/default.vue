@@ -134,21 +134,28 @@
               </svg>
             </button>
             
-            <!-- Profile Link (Desktop) -->
+            <!-- Profile Link -->
             <NuxtLink 
               to="/profile"
-              class="hidden sm:flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition"
+              class="flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-700 dark:text-gray-300 sm:gap-2 sm:p-0 sm:rounded-none sm:hover:bg-transparent sm:text-sm sm:hover:text-gray-900 sm:dark:hover:text-white"
               title="Profile Settings"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
               </svg>
-              <span class="hidden md:inline">{{ authStore.user?.username }}</span>
+              <span class="hidden md:inline ml-2">{{ authStore.user?.username }}</span>
             </NuxtLink>
             
-            <!-- Logout Button (Desktop) -->
-            <button @click="handleLogout" class="hidden sm:block btn-secondary">
-              Logout
+            <!-- Logout Button -->
+            <button 
+              @click="handleLogout" 
+              class="flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-700 dark:text-gray-300 sm:px-4 sm:py-2 sm:rounded-md sm:btn-secondary sm:justify-start"
+              title="Logout"
+            >
+              <svg class="w-5 h-5 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+              </svg>
+              <span class="hidden sm:inline">Logout</span>
             </button>
           </div>
         </div>
@@ -156,7 +163,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <main class="pt-24 sm:pt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
       <slot />
     </main>
   </div>
