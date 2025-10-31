@@ -173,6 +173,7 @@ const props = defineProps<{
 
 const emit = defineEmits(['uploaded', 'deleted'])
 
+const config = useRuntimeConfig()
 const receipts = ref<any[]>([])
 const selectedFile = ref<File | null>(null)
 const uploading = ref(false)
@@ -181,7 +182,7 @@ const previewReceipt = ref<any>(null)
 
 const fetchReceipts = async () => {
   try {
-    const response = await $fetch(`http://localhost:8000/api/receipts/transaction/${props.transactionId}`, {
+    const response = await $fetch(`${config.public.apiBase}/receipts/transaction/${props.transactionId}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       }
@@ -234,7 +235,7 @@ const uploadFile = async () => {
     const formData = new FormData()
     formData.append('file', selectedFile.value)
     
-    const response = await $fetch(`http://localhost:8000/api/receipts?transaction_id=${props.transactionId}`, {
+    const response = await $fetch(`${config.public.apiBase}/receipts?transaction_id=${props.transactionId}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -255,7 +256,7 @@ const uploadFile = async () => {
 const downloadReceipt = async (receipt: any) => {
   try {
     const token = localStorage.getItem('access_token')
-    const response = await fetch(`http://localhost:8000/api/receipts/${receipt.id}/download`, {
+    const response = await fetch(`${config.public.apiBase}/receipts/${receipt.id}/download`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -283,7 +284,7 @@ const viewReceipt = async (receipt: any) => {
   // Fetch the receipt with authentication
   try {
     const token = localStorage.getItem('access_token')
-    const response = await fetch(`http://localhost:8000/api/receipts/${receipt.id}/download`, {
+    const response = await fetch(`${config.public.apiBase}/receipts/${receipt.id}/download`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -308,7 +309,7 @@ const deleteReceipt = async (receiptId: number) => {
   if (!confirm('Are you sure you want to delete this receipt?')) return
   
   try {
-    await $fetch(`http://localhost:8000/api/receipts/${receiptId}`, {
+    await $fetch(`${config.public.apiBase}/receipts/${receiptId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
