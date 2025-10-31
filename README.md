@@ -18,7 +18,9 @@ Nuxt.js 3 frontend application for SpendWise expense management system.
 - 📤 **Data Export** - Export transactions to CSV
 - 👤 **Profile Management** - Customize profile with avatar upload
 - 🌙 **Dark Mode** - Modern dark theme support
-- 📱 **Responsive Design** - Works seamlessly on all devices
+- 📱 **Mobile-First Responsive Design** - Fully optimized for mobile with toggleable sidebar menu
+- 🍔 **Mobile Navigation** - Hamburger menu with slide-out sidebar on mobile devices
+- 🎨 **Enhanced UI/UX** - Improved mobile experience with touch-friendly controls
 
 ## Setup
 
@@ -83,7 +85,7 @@ frontend/
 │   └── theme.ts                # Dark mode state
 │
 ├── layouts/                    # Application layouts
-│   └── default.vue             # Default layout with navigation
+│   └── default.vue             # Default layout with mobile-responsive navigation and toggleable sidebar
 │
 ├── middleware/                 # Route middleware
 │   └── auth.ts                 # Authentication guard
@@ -149,8 +151,18 @@ frontend/
 #### Budgets (`/budgets`)
 - View all budget statuses
 - Create and manage monthly or fixed budgets
-- Visual progress bars with color coding
-- Budget alerts (warning, critical, danger)
+- **Fixed Budgets**: Positive progression tracking (like paying off a loan)
+  - Low progress (0-49%): Critical alert
+  - Moderate progress (50-79%): Warning alert
+  - Good progress (80-99%): Safe status
+  - Complete (100%+): Completed status (green)
+- **Monthly Budgets**: Standard budget tracking
+  - Within budget (0-79%): Safe status
+  - Getting close (80-89%): Warning alert
+  - Almost over (90-99%): Critical alert
+  - Over budget (100%+): Danger alert
+- Visual progress bars with color coding based on budget type
+- Budget alerts with smart messaging
 - Toggle budget rollover
 - Budget history charts
 
@@ -162,11 +174,12 @@ frontend/
 - Manually process due transactions
 
 #### Receipts (`/receipts`)
-- View all uploaded receipts
+- View all uploaded receipts with transaction details
 - Search receipts by filename, transaction, or OCR text
 - Filter by file type and date range
-- Download or view receipt images
-- Upload receipts for transactions
+- View OCR-extracted text content (files not stored to save server space)
+- Link receipts to transactions
+- Display related transaction information (amount, category, date)
 
 #### Tags (`/tags`)
 - Create and manage transaction tags
@@ -245,6 +258,27 @@ frontend/
 - Dark mode toggle
 - Theme persistence
 
+## Mobile Navigation
+
+The application features a fully responsive mobile navigation system:
+
+### Features
+- **Hamburger Menu**: Toggle button visible on mobile devices (< 640px)
+- **Slide-Out Sidebar**: Smooth slide-in animation from the left
+- **Overlay**: Dark overlay when sidebar is open (tap to close)
+- **Auto-Close**: Sidebar automatically closes when:
+  - User clicks on a navigation link
+  - User clicks the overlay
+  - User presses the Escape key
+  - Route changes
+
+### Implementation
+- Fixed navigation bar at the top with hamburger icon on mobile
+- Sidebar hidden on desktop (standard horizontal navigation)
+- Touch-friendly controls optimized for mobile devices
+- Smooth transitions and animations
+- Full dark mode support
+
 ## Styling
 
 ### Tailwind CSS
@@ -301,9 +335,12 @@ Displays user notifications in a dropdown with:
 ### ReceiptUpload
 Upload and manage receipts with:
 - Drag and drop support
-- File type validation
-- Image preview
+- File type validation (images and PDFs)
+- OCR text extraction (text content stored, files not saved)
+- Link receipts to transactions
+- View transaction details for linked receipts
 - Progress indicators
+- Mobile-friendly interface
 
 ### TagInput
 Interactive tag selection with:
@@ -407,18 +444,23 @@ API_BASE_URL=https://api.yourapp.com/api
 - Dashboard with key metrics
 - Advanced analytics with interactive charts
 - Budget system (monthly and fixed)
+- **Fixed Budget Tracking**: Positive progression with completion status
+- **Monthly Budget Tracking**: Standard alerts with proper messaging
 - Budget rollover functionality
-- Budget alerts and warnings
+- Smart budget alerts (different logic for fixed vs monthly)
 - Recurring transactions management
-- Receipt upload and search
-- OCR text extraction (backend)
+- Receipt upload with OCR text extraction
+- **Receipt Storage**: Only OCR text stored (no file storage to save space)
+- Receipt search and transaction linking
 - Tags system with analytics
 - Multi-currency support
 - Exchange rate conversion
 - Real-time notifications
 - Profile management with avatar upload
 - Dark mode theme
-- Responsive design
+- **Mobile-First Responsive Design**
+- **Toggleable Sidebar Menu** for mobile devices
+- **Touch-Friendly Navigation**
 - Data export to CSV
 - Transaction filtering and search
 
