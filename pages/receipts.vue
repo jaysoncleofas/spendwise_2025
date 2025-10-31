@@ -240,6 +240,8 @@ definePageMeta({
   layout: 'default'
 })
 
+const config = useRuntimeConfig()
+
 const filters = ref({
   query: '',
   file_type: '',
@@ -292,7 +294,7 @@ const fetchReceipts = async () => {
     
     const queryString = new URLSearchParams(params).toString()
     
-    const response = await $fetch(`http://localhost:8000/api/receipts/search?${queryString}`, {
+    const response = await $fetch(`${config.public.apiBase}/receipts/search?${queryString}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       }
@@ -338,7 +340,7 @@ const viewReceipt = async (receipt: any) => {
   
   try {
     const token = localStorage.getItem('access_token')
-    const response = await fetch(`http://localhost:8000/api/receipts/${receipt.id}/download`, {
+    const response = await fetch(`${config.public.apiBase}/receipts/${receipt.id}/download`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -358,7 +360,7 @@ const viewReceipt = async (receipt: any) => {
 const downloadReceipt = async (receipt: any) => {
   try {
     const token = localStorage.getItem('access_token')
-    const response = await fetch(`http://localhost:8000/api/receipts/${receipt.id}/download`, {
+    const response = await fetch(`${config.public.apiBase}/receipts/${receipt.id}/download`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
