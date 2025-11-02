@@ -44,7 +44,7 @@
         v-if="searchQuery && !isCreatingNewTag"
         @click="createNewTag"
         type="button"
-        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-500 hover:text-blue-700"
+        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary-500 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
         title="Create new tag"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@
           v-if="searchQuery && !suggestions.find(t => t.name.toLowerCase() === searchQuery.toLowerCase())"
           @mousedown.prevent="createNewTag"
           type="button"
-          class="w-full text-left px-4 py-2 hover:bg-gray-100 border-t border-gray-200 text-blue-600 font-medium flex items-center gap-2"
+          class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-700 text-primary-600 dark:text-primary-400 font-medium flex items-center gap-2"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
@@ -125,7 +125,7 @@
             <button
               @click="saveNewTag"
               type="button"
-              class="flex-1 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              class="flex-1 px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-400"
             >
               Create
             </button>

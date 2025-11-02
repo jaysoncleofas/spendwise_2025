@@ -23,7 +23,7 @@
               <p class="text-sm text-gray-500 dark:text-gray-400" v-if="wallet.description">{{ wallet.description }}</p>
             </div>
             <div class="flex space-x-2">
-              <button @click="editWallet(wallet)" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300" title="Edit">
+              <button @click="editWallet(wallet)" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300" title="Edit">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                 </svg>

@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="flex space-x-2">
-              <button @click="editCategory(category)" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300" title="Edit">
+              <button @click="editCategory(category)" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300" title="Edit">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                 </svg>
@@ -55,7 +55,7 @@
                   </svg>
                   Fixed
                 </span>
-                <span v-if="category.budget_type === 'monthly' && category.budget_rollover" class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full flex items-center gap-1">
+                <span v-if="category.budget_type === 'monthly' && category.budget_rollover" class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 rounded-full flex items-center gap-1">
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                   </svg>
@@ -179,7 +179,7 @@
               </div>
               
               <!-- Monthly Budget Rollover Option -->
-              <div v-if="categoryForm.budget_type === 'monthly'" class="p-4 bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg">
+              <div v-if="categoryForm.budget_type === 'monthly'" class="p-4 bg-primary-50 dark:bg-primary-900 border border-primary-200 dark:border-primary-700 rounded-lg">
                 <div class="flex items-center justify-between mb-2">
                   <div>
                     <label class="flex items-center cursor-pointer">

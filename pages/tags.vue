@@ -16,7 +16,7 @@
     <div v-if="tagAnalytics" class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
       <div class="card">
         <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Tags</h3>
-        <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">{{ tagAnalytics.total_tags }}</p>
+        <p class="text-3xl font-bold text-primary-600 dark:text-primary-400">{{ tagAnalytics.total_tags }}</p>
       </div>
       <div class="card">
         <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Tagged Transactions</h3>
@@ -41,7 +41,7 @@
     <!-- Tags List -->
     <div class="card">
       <div v-if="tagsStore.loading" class="text-center py-8">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto"></div>
       </div>
 
       <div v-else-if="tagsStore.tags.length === 0" class="text-center py-8 text-gray-500 dark:text-gray-400">
@@ -65,7 +65,7 @@
             <div class="flex gap-2">
               <button
                 @click="editTag(tag)"
-                class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
                 title="Edit"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

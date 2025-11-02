@@ -71,7 +71,7 @@
 
     <!-- Loading State -->
     <div v-if="loading" class="text-center py-12">
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto"></div>
       <p class="text-gray-600 dark:text-gray-400 mt-4">Loading receipts...</p>
     </div>
 
@@ -106,7 +106,7 @@
             <!-- File Icon Header -->
             <div class="flex items-center gap-3 mb-4">
               <div class="flex-shrink-0">
-                <svg v-if="receipt.file_type && receipt.file_type.startsWith('image/')" class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg v-if="receipt.file_type && receipt.file_type.startsWith('image/')" class="w-10 h-10 text-primary-500 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
                 <svg v-else class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,7 +145,7 @@
                       'font-semibold',
                       receipt.transaction.transaction_type === 'income' ? 'text-green-600 dark:text-green-400' : 
                       receipt.transaction.transaction_type === 'expense' ? 'text-red-600 dark:text-red-400' :
-                      'text-blue-600 dark:text-blue-400'
+                      'text-primary-600 dark:text-primary-400'
                     ]">
                       {{ formatTransactionAmount(receipt.transaction.amount, receipt.transaction.wallet?.currency) }}
                     </p>
@@ -156,7 +156,7 @@
                       'px-2 py-1 rounded text-xs font-medium capitalize',
                       receipt.transaction.transaction_type === 'income' ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300' : 
                       receipt.transaction.transaction_type === 'expense' ? 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300' :
-                      'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
+                      'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300'
                     ]">
                       {{ receipt.transaction.transaction_type }}
                     </span>
@@ -202,7 +202,7 @@
         <button
           @click="previousPage"
           :disabled="currentPage === 1"
-          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+          class="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-400 disabled:bg-gray-300 disabled:cursor-not-allowed"
         >
           ← Previous
         </button>
@@ -212,7 +212,7 @@
         <button
           @click="nextPage"
           :disabled="currentPage >= totalPages"
-          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+          class="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-400 disabled:bg-gray-300 disabled:cursor-not-allowed"
         >
           Next →
         </button>

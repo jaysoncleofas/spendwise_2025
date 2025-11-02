@@ -47,7 +47,7 @@
               {{ formatAmount(currentSummary.total_expense) }}
             </div>
           </div>
-          <div class="stat-card border-blue-500">
+          <div class="stat-card border-primary-500">
             <div class="text-sm font-medium text-gray-500">Net Amount</div>
             <div class="mt-1 text-3xl font-semibold" :class="currentSummary.net_amount >= 0 ? 'text-green-600' : 'text-red-600'">
               {{ formatAmount(currentSummary.net_amount) }}
@@ -271,17 +271,17 @@
             />
             
             <!-- Check if heatmap is empty (all zeros) -->
-            <div v-if="isHeatmapEmpty" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div v-if="isHeatmapEmpty" class="mt-4 p-4 bg-primary-50 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-700 rounded-lg">
               <div class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <div>
-                  <p class="font-semibold text-blue-900">No spending data yet</p>
-                  <p class="text-sm text-blue-700 mt-1">
+                  <p class="font-semibold text-primary-900 dark:text-primary-100">No spending data yet</p>
+                  <p class="text-sm text-primary-700 dark:text-primary-300 mt-1">
                     Create some <strong>expense</strong> transactions to see your spending patterns. The heatmap shows when you spend the most by day of week and hour.
                   </p>
-                  <NuxtLink to="/transactions" class="inline-block mt-2 text-sm font-medium text-blue-600 hover:text-blue-800">
+                  <NuxtLink to="/transactions" class="inline-block mt-2 text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300">
                     Add transactions →
                   </NuxtLink>
                 </div>

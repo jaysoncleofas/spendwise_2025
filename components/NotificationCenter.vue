@@ -29,7 +29,7 @@
           <button
             v-if="unreadCount > 0"
             @click="markAllAsRead"
-            class="text-sm text-blue-600 hover:text-blue-800"
+            class="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300"
           >
             Mark all read
           </button>
@@ -58,7 +58,7 @@
           v-for="notification in notifications"
           :key="notification.id"
           class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition cursor-pointer"
-          :class="{ 'bg-blue-50 dark:bg-blue-900/20': notification.is_read === 0 }"
+          :class="{ 'bg-primary-50 dark:bg-primary-900/20': notification.is_read === 0 }"
           @click="markAsRead(notification.id)"
         >
           <div class="flex justify-between items-start mb-1">

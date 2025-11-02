@@ -127,7 +127,7 @@
                     :class="{
                       'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300': transaction.transaction_type === 'income',
                       'bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300': transaction.transaction_type === 'expense',
-                      'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300': transaction.transaction_type === 'transfer'
+                      'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300': transaction.transaction_type === 'transfer'
                     }"
                   >
                     {{ transaction.transaction_type === 'income' ? '↓' : transaction.transaction_type === 'expense' ? '↑' : '↔' }}
@@ -153,7 +153,7 @@
                   :class="{
                     'text-green-600 dark:text-green-400': transaction.transaction_type === 'income',
                     'text-red-600 dark:text-red-400': transaction.transaction_type === 'expense',
-                    'text-blue-600 dark:text-blue-400': transaction.transaction_type === 'transfer'
+                    'text-primary-600 dark:text-primary-400': transaction.transaction_type === 'transfer'
                   }"
                 >
                   {{ transaction.transaction_type === 'income' ? '+' : '-' }}{{ formatCurrencyWithCommas(transaction.amount, getTransactionCurrency(transaction)) }}
@@ -168,7 +168,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
                   </svg>
                 </button>
-                <button @click="editTransaction(transaction)" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300" title="Edit">
+                <button @click="editTransaction(transaction)" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300" title="Edit">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                   </svg>

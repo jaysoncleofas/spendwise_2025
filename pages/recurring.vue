@@ -53,7 +53,7 @@
                 'px-2 py-1 text-xs rounded-full',
                 recurring.transaction_type === 'income' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' :
                 recurring.transaction_type === 'expense' ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200' :
-                'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                'bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200'
               ]">
                 {{ recurring.transaction_type }}
               </span>
